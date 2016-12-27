@@ -1,0 +1,13 @@
+{
+    "name": "INoteBook - 个人学习笔记汇总",
+    "version": "0.0.0",
+    "plugins": [
+        "advanced-emoji",
+        "mathjax"
+    ],
+    "pluginsConfig": {
+        "mathjax": {
+            "forceSVG": true
+        }
+    }
+}

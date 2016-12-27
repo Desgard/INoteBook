@@ -11,7 +11,7 @@ if which gitbook > /dev/null; then
     cd ../../../NB-gitbook/
     git add -A
     git commit -am "update `date`"
-    git push 
+    git push origin gh-pages
 else
     echo "Gitbook is not installed."
 fi
