@@ -275,7 +275,131 @@
                                 
                                 <h1 id="&#x4E0A;&#x624B;&#x5B9E;&#x4F8B;&#x51C6;&#x5907;&#x5F00;&#x53D1;">&#x4E0A;&#x624B;&#x5B9E;&#x4F8B;&#x51C6;&#x5907;&#x5F00;&#x53D1;</h1>
 <p>&#x672C;&#x4F8B;&#x662F; <em>React-Native</em> &#x5B98;&#x65B9;&#x6587;&#x6863;&#x4E2D;&#x7684;&#x5B9E;&#x4F8B;&#x5E94;&#x7528;&#xFF0C;&#x5C06;&#x83B7;&#x53D6;&#x7535;&#x5F71;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x5728; <code>ListView</code> &#x4E2D;&#x5C55;&#x73B0;&#x51FA;&#x6765;&#x3002;</p>
-<h2 id="&#x5F00;&#x59CB;&#x5F00;&#x53D1;">&#x5F00;&#x59CB;&#x5F00;&#x53D1;</h2>
+<h2 id="&#x4EE3;&#x7801;&#x793A;&#x4F8B;">&#x4EE3;&#x7801;&#x793A;&#x4F8B;</h2>
+<pre><code class="lang-js"><span class="hljs-comment">/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */</span>
+
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+<span class="hljs-keyword">import</span> {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ListView,
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-native&apos;</span>;
+
+<span class="hljs-comment">// &#x7ED9;&#x51FA;&#x63A5;&#x53E3;&#x7684; url &#x5730;&#x5740;</span>
+<span class="hljs-keyword">var</span> REQUEST_URL = <span class="hljs-string">&apos;https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json&apos;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloWorld</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>(props) {
+    <span class="hljs-keyword">super</span>(props);
+    <span class="hljs-keyword">this</span>.state = {
+      dataSource: <span class="hljs-keyword">new</span> ListView.DataSource({
+        rowHasChanged: (row1, row2) =&gt; row1 !== row2,
+      }),
+      loaded: <span class="hljs-literal">false</span>,
+    };
+    <span class="hljs-comment">// &#x5728;ES6&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x51FD;&#x6570;&#x91CC;&#x4F7F;&#x7528;&#x4E86;this&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x201C;&#x7ED1;&#x5B9A;&#x201D;&#x64CD;&#x4F5C;&#xFF0C;&#x5426;&#x5219;this&#x7684;&#x6307;&#x5411;&#x4F1A;&#x53D8;&#x4E3A;&#x7A7A;</span>
+    <span class="hljs-comment">// &#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x884C;&#x4EE3;&#x7801;&#x4E00;&#x6837;&#xFF0C;&#x5728;constructor&#x4E2D;&#x4F7F;&#x7528;bind&#x662F;&#x5176;&#x4E2D;&#x4E00;&#x79CD;&#x505A;&#x6CD5;&#xFF08;&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x505A;&#x6CD5;&#xFF0C;&#x5982;&#x4F7F;&#x7528;&#x7BAD;&#x5934;&#x51FD;&#x6570;&#x7B49;&#xFF09;</span>
+    <span class="hljs-keyword">this</span>.fetchData = <span class="hljs-keyword">this</span>.fetchData.bind(<span class="hljs-keyword">this</span>); 
+  }
+
+  componentDidMount() {
+    <span class="hljs-keyword">this</span>.fetchData();
+  }
+
+  fetchData() {
+    fetch(REQUEST_URL)
+      .then((response) =&gt; response.json())
+      .then((responseData) =&gt; {
+        <span class="hljs-comment">// &#x6CE8;&#x610F;&#xFF0C;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x4E86;this&#x5173;&#x952E;&#x5B57;&#xFF0C;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;this&#x5728;&#x8C03;&#x7528;&#x65F6;&#x4ECD;&#x7136;&#x6307;&#x5411;&#x5F53;&#x524D;&#x7EC4;&#x4EF6;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x201C;&#x7ED1;&#x5B9A;&#x201D;&#x64CD;&#x4F5C;</span>
+        <span class="hljs-keyword">this</span>.setState({
+          dataSource: <span class="hljs-keyword">this</span>.state.dataSource.cloneWithRows(responseData.movies),
+          loaded: <span class="hljs-literal">true</span>,
+        });
+      });
+  }
+
+  render() {
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.state.loaded) {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.renderLoadingView();
+    }
+
+    <span class="hljs-keyword">return</span> (
+      &lt;ListView
+        dataSource={this.state.dataSource}
+        renderRow={this.renderMovie}
+        style={styles.listView}
+      /&gt;
+    );
+  }
+
+  renderLoadingView() {
+    return (
+      &lt;View style={styles.container}&gt;
+        &lt;Text&gt;
+          Loading movies...
+        &lt;/Text&gt;
+      &lt;/View&gt;
+    );
+  }
+
+  renderMovie(movie) {
+    return (
+      &lt;View style={styles.container}&gt;
+        &lt;Image
+          source={{uri: movie.posters.thumbnail}}
+          style={styles.thumbnail}
+        /&gt;
+        &lt;View style={styles.rightContainer}&gt;
+          &lt;Text style={styles.title}&gt;{movie.title}&lt;/Text&gt;
+          &lt;Text style={styles.year}&gt;{movie.year}&lt;/Text&gt;
+        &lt;/View&gt;
+      &lt;/View&gt;
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  listView: {
+    paddingTop: 20,
+    backgroundColor: &apos;#F5FCFF&apos;,
+  },
+  container: {
+    flex: 1,
+    flexDirection: &apos;row&apos;,
+    justifyContent: &apos;center&apos;,
+    alignItems: &apos;center&apos;,
+    backgroundColor: &apos;#F5FCFF&apos;,
+  },
+  thumbnail: {
+    width: 53,
+    height: 81,
+  },
+  rightContainer: {
+    flex: 1,
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 8,
+    textAlign: &apos;center&apos;,
+  },
+  year: {
+    textAlign: &apos;center&apos;,
+  },
+});
+
+AppRegistry.registerComponent(&apos;HelloWorld&apos;, () =&gt; HelloWorld);
+</code></pre>
+<h2 id="&#x793A;&#x4F8B;&#x89E3;&#x91CA;">&#x793A;&#x4F8B;&#x89E3;&#x91CA;</h2>
+<p>&#x5728;&#x9875;&#x9762;&#x52A0;&#x8F7D;&#x4E4B;&#x524D;&#x5148;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x521D;&#x59CB;&#x7684; <code>null</code> &#x72B6;&#x6001;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>this.state.movies = null</code> &#x6765;&#x5224;&#x65AD;&#x6211;&#x4EEC;&#x662F;&#x4E0D;&#x662F;&#x5DF2;&#x7ECF;&#x88AB;&#x6293;&#x53D6;&#x5230;&#x4E86;&#x3002;&#x5728;&#x670D;&#x52A1;&#x5668;&#x54CD;&#x5E94;&#x8FD4;&#x56DE;&#x7684;&#x65F6;&#x5019;&#x6267;&#x884C; <code>this.setState({movies: moviesData})</code> &#x6765;&#x6539;&#x53D8;&#x72B6;&#x6001;&#x3002;</p>
+<p>&#x5728;&#x7EC4;&#x4EF6;&#x52A0;&#x8F7D;&#x5B8C;&#x6BD5;&#x540E;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5411;&#x670D;&#x52A1;&#x5668;&#x8BF7;&#x6C42;&#x6570;&#x636E;&#x3002;<code>componentDidMount</code> &#x662F; <code>React</code> &#x7EC4;&#x4EF6;&#x7684;&#x4E00;&#x4E2A;&#x751F;&#x547D;&#x5468;&#x671F;&#x65B9;&#x6CD5;&#xFF0C;&#x5B83;&#x4F1A;&#x5728;&#x7EC4;&#x4EF6;&#x521A;&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#x7684;&#x65F6;&#x5019;&#x8C03;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x4EE5;&#x540E;&#x4E0D;&#x518D;&#x8C03;&#x7528;&#x3002;</p>
+<p><code>fetchData()</code> &#x51FD;&#x6570;&#x7528;&#x6765;&#x5904;&#x7406;&#x5F97;&#x5230;&#x6570;&#x636E;&#x540E;&#x7684;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#x3002;&#x5728; <code>Promise</code> &#x8C03;&#x7528;&#x94FE;&#x7ED3;&#x675F;&#x540E;&#x6267;&#x884C; <code>this.setState({movies:data})</code>&#x3002;&#x5728; React &#x5DE5;&#x4F5C;&#x673A;&#x5236;&#x4E0B;&#xFF0C;<code>setState</code> &#x4F1A;&#x8FDB;&#x5165;&#x91CD;&#x65B0;&#x6E32;&#x67D3;&#x6D41;&#x7A0B;&#xFF0C;<code>render</code> &#x51FD;&#x6570;&#x88AB;&#x89E6;&#x53D1;&#xFF0C;&#x627E;&#x5230; <code>this.state.movies</code> &#x4E2D;&#x7684;&#x65B0;&#x6570;&#x636E;&#x3002;</p>
 
                                 
                                 </section>
@@ -319,7 +443,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"上手实例准备开发","level":"1.2.2","depth":2,"next":{"title":"SICP 笔记与习题","level":"1.3","depth":1,"path":"SICP/README.md","ref":"SICP/README.md","articles":[{"title":"构造过程抽象","level":"1.3.1","depth":2,"path":"SICP/content1.md","ref":"SICP/content1.md","articles":[]},{"title":"构造数据抽象","level":"1.3.2","depth":2,"path":"SICP/content2.md","ref":"SICP/content2.md","articles":[]}]},"previous":{"title":"开始上手 React-Native","level":"1.2.1","depth":2,"path":"React-Native/content1.md","ref":"React-Native/content1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["advanced-emoji","mathjax","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mathjax":{"forceSVG":true,"version":"2.6-latest"},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","name":"INoteBook - 个人学习笔记汇总","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"version":"0.0.0","gitbook":"*"},"file":{"path":"React-Native/content2.md","mtime":"2016-12-27T06:05:03.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-12-28T04:03:04.540Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"上手实例准备开发","level":"1.2.2","depth":2,"next":{"title":"SICP 笔记与习题","level":"1.3","depth":1,"path":"SICP/README.md","ref":"SICP/README.md","articles":[{"title":"构造过程抽象","level":"1.3.1","depth":2,"path":"SICP/content1.md","ref":"SICP/content1.md","articles":[]},{"title":"构造数据抽象","level":"1.3.2","depth":2,"path":"SICP/content2.md","ref":"SICP/content2.md","articles":[]}]},"previous":{"title":"开始上手 React-Native","level":"1.2.1","depth":2,"path":"React-Native/content1.md","ref":"React-Native/content1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["advanced-emoji","mathjax"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"mathjax":{"forceSVG":true,"version":"2.6-latest"},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","name":"INoteBook - 个人学习笔记汇总","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"version":"0.0.0","gitbook":"*"},"file":{"path":"React-Native/content2.md","mtime":"2016-12-28T14:01:15.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-12-28T14:02:28.216Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -334,10 +458,6 @@
     
         
         <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         
