@@ -84,3 +84,67 @@
         (cons (- n) (- d))
         (cons n d)))
 ```
+
+## 抽象屏障
+
+数据抽象的基本思想：**为每一类数据标识出一组操作，使得对这类数据对象的所有操作都可以基于它们描述，而且在操作这些数据对象事业只能使用它们**。
+
+数据抽象的思想其实就是一种面向对象的封装性，只对外提供可操作的主动暴露的接口，从而保证并维护原数据的安全性和稳定性。**抽象屏障**就是如此，通过接口通道限制性的控制内部数据。这时一种高度封装的典型描述。
+
+> **练习2.2** 请考虑平面上线段的表示问题。一个线段用一对点表示，它们分别时线段的起点和终点。请定义构造函数 `make-segment` 和选择函数 `start-segment` 、 `end-segment` ，它们基于点定义线段的表示，序对的两个成分分别表示点的 x 坐标和 y 坐标。请据此进一步给出构造 `make-segment` 和选择函数 `x-point` 、 `y-point`，用它们定义出点的这种表示。最后请基于所定义的构造函数和选择函数，定义出过程 `midpoint-segment`，它以一个线段为参数，返回线段的中点。
+
+打印点的方式：
+
+```lisp
+(define (print-point p)
+  (newline)
+  (display "(")
+  (display (x-point p))
+  (display ",")
+  (display (y-point p))
+  (display ")"))
+```
+
+先对点进行描述性定义：
+
+```lisp
+(define (make-point x y)
+    (cons x y))
+
+(define (x-point p)
+    (car p))
+
+(define (y-point p)
+    (cdr p))
+```
+
+完成对线段的定义：
+
+```lisp
+(define (make-segment start-point end-point)
+  (cons start-point end-point))
+
+(define (start-segment seg)
+    (car seg))
+
+(define (end-segment seg)
+    (cdr seg))
+```
+
+完成线段中点描述定义：
+
+```lisp
+(define (midpoint-segment seg)
+    (let ((start (start-segment seg))
+          (end (end-segment seg)))
+        (make-point (average (x-point start)
+                             (x-point end))
+                    (average (y-point start)
+                             (y-point end)))))
+
+(define (average x y)
+    (/ (+ x y)
+       2.0))
+```
+
+
