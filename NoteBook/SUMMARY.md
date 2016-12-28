@@ -7,4 +7,6 @@
 * [SICP 笔记与习题](SICP/README.md)
     * [构造过程抽象](SICP/content1.md)
     * [构造数据抽象](SICP/content2.md)
+* [Lightweigth Django - Learning Note](LD/README.md)
+    * [常用命令集](LD/content1.md)
 

@@ -1,0 +1,2 @@
+# Lightweigth Django - Learning Note
+
