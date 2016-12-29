@@ -4,7 +4,7 @@ git add -A
 git commit -am "update `date`"
 git push origin master
 if which gitbook > /dev/null; then
-    cd NoteBook 
+    cd NoteBook
     gitbook build
     cd _book
     cp -R * ../../../NB-gitbook/
