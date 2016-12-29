@@ -147,4 +147,86 @@
        2.0))
 ```
 
+> **练习2.3** 请实现一种平面矩形的表示（提示：你有可能用练习2.2的结果）。基于你的构造函数和选择函数定义几个过程，计算给定矩形的周长和面积等。现在请再为矩形实现另一种表示方式。你应该怎样设计系统，使之能提供适当的抽象屏障，使同一个周长或者面积过程对两种不同表示都能工作？
+
+很显然可以把一个矩形使用 4 个线段进行描述：
+
+```lisp
+(define (make-rectangle l1 l2 w1 w2)
+  (cons (cons l1 l2)
+        (cons w1 w2)))
+
+(define (l1-rectangle r)
+  (car (car r)))
+
+(define (l2-rectangle r)
+  (cdr (car r)))
+
+(define (w1-rectangle r)
+  (car (cdr r)))
+
+(define (w2-rectangle r)
+  (cdr (cdr r)))
+```
+
+这里的 `l1`, `l2`, `w1`, `w2` 为上一题的点描述，用一个 $$2\times2\times2$$ 的嵌套序对可描述四个线段。
+
+对信息进行输出格式化：
+
+```lisp
+(define (print-rectangle r)
+    (let ((l1 (length-1-rectangle r))
+          (l2 (length-2-rectangle r))
+          (w1 (width-1-rectangle r))
+          (w2 (width-2-rectangle r)))
+
+        (newline)
+        (display "Length 1:")
+        (print-point (start-segment l1))
+        (print-point (end-segment l1))
+
+        (newline)
+        (display "Length 2:")
+        (print-point (start-segment l2))
+        (print-point (end-segment l2))
+
+        (newline)
+        (display "Width 1:")
+        (print-point (start-segment w1))
+        (print-point (end-segment w1))
+
+        (newline)
+        (display "Width 2:")
+        (print-point (start-segment w2))
+        (print-point (end-segment w2))))
+```
+
+测试输出结果：
+
+```lisp
+(print-rectangle
+(make-rectangle
+ (make-segment (make-point 1 4)
+               (make-point 4 4))
+ (make-segment (make-point 1 2)
+               (make-point 4 2))
+ (make-segment (make-point 1 2)
+               (make-point 1 4))
+ (make-segment (make-point 4 2)
+               (make-point 4 4)))
+)
+> Length 1:
+(1,4)
+(4,4)
+Length 2:
+(1,2)
+(4,2)
+Width 1:
+(1,2)
+(1,4)
+Width 2:
+(4,2)
+(4,4)
+```
+
 
