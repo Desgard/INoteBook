@@ -1,8 +1,8 @@
 # INoteBook
 
-![](https://img.shields.io/travis/USER/REPO.svg)
 ![](https://img.shields.io/badge/gitbook-v3.2.2-green.svg)
 ![](https://img.shields.io/aur/license/yaourt.svg)
+![](https://img.shields.io/badge/shell-language-green.svg)
 
 ![](http://7xwh85.com1.z0.glb.clouddn.com/INoteBook.png)
 
@@ -32,4 +32,5 @@ bash update.sh
 Version 3, 29 June 2007
 
 Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/> 
+
 Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
