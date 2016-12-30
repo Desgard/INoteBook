@@ -3,11 +3,17 @@
     "version": "0.0.0",
     "plugins": [
         "advanced-emoji",
-        "mathjax"
+        "mathjax",
+        "include-codeblock",
+        "disqus",
+        "anchors"
     ],
     "pluginsConfig": {
         "mathjax": {
             "forceSVG": false
+        },
+        "disqus": {
+            "shortName": "desgard"
         }
     }
 }
