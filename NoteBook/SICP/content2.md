@@ -230,3 +230,42 @@ Width 2:
 ```
 
 
+## 数据意味着什么
+
+从一般意义上讲，数据即是由给定的构造函数和选择函数所实现的东西。从高度数据模型的抽象角度来说，表示复合数据的能力，其实时一种过程。在程序设计风格中通常将复合数据的抽象过程称之为 **消息传递**。
+
+> **练习2.4** 下面时序对的另一种过程性表示方式。请针对这一表示验证，对于任意的 x 和 y，`(car (cons x y))` 都将产生出 x。
+
+```lisp
+(define (cons x y)
+  (lambda (m) (m x y)))
+
+(define (car z)
+  (z (lambda (p q) p)))
+```
+
+> 对应的 `cdr` 应该如何定义？
+
+表达式 ` (car (cons 1 2))` 的展开序列：
+
+```lisp
+(car (cons 1 2))
+
+(car (lambda (m) (m 1 2)))          ; 展开 cons
+
+((lambda (z) (z (lambda (p q) p)))  ; 展开 car ，代换 z
+    (lambda (m) (m 1 2)))
+
+((lambda (m) (m 1 2))               ; 代换 m
+    (lambda (p q) p))
+
+((lambda (p q) p)                   ; 代换 p
+```
+
+
+根据 car 的定义，以及上面的展开序列给出的线索，我们可以写出对应的 cdr 函数：
+
+```lisp
+(define (cdr z)
+    (z (lambda (p q) q)))
+```
