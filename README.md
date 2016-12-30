@@ -1,8 +1,9 @@
 # INoteBook
 
-![](https://img.shields.io/badge/gitbook-v3.2.2-green.svg)
+![](https://img.shields.io/badge/v3.2.2-gitbook-green.svg)
+![](https://img.shields.io/badge/language-shell-green.svg)
 ![](https://img.shields.io/aur/license/yaourt.svg)
-![](https://img.shields.io/badge/shell-language-green.svg)
+
 
 ![](http://7xwh85.com1.z0.glb.clouddn.com/INoteBook.png)
 
