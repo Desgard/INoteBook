@@ -269,3 +269,29 @@ Width 2:
 (define (cdr z)
     (z (lambda (p q) q)))
 ```
+
+> **练习2.5** 请证明，如果 a 和 b 的序对表示为乘积 $$2^a$$ $$3^b$$ 对应的整数，我们就可以只用非负整数和算数运算表示序对。请给出对应的过程 cons、car 和 cdr 的定义。
+
+根据题意，构造序对为两个乘幂之间的乘积：
+
+```lisp
+(define (cons x y)
+    (* (expt 2 x)
+       (expt 3 y)))
+```
+
+由于我们将一个数 x 描述成：$$x = 2 \times 2 \times ... \times 2 \times 3 \times ... \times 3$$，2 和 3 是两个互质数，那么就可以直接对序对结果反复除以 2 或者 3 来描述取前值和后值操作。
+
+```lisp
+
+(define (car z)
+    (if (= 0 (remainder z 2))
+        (+ 1 (car (/ z 2)))
+        0))
+
+
+(define (cdr z)
+    (if (= 0 (remainder z 3))
+        (+ 1 (cdr (/ z 3)))
+        0))
+``` 
