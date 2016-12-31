@@ -5,7 +5,6 @@
         "advanced-emoji",
         "mathjax",
         "include-codeblock",
-        "disqus",
         "anchors"
     ],
     "pluginsConfig": {
