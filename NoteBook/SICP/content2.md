@@ -295,3 +295,69 @@ Width 2:
         (+ 1 (cdr (/ z 3)))
         0))
 ``` 
+
+> **练习2.6** 请考虑在一个可以对过程做各种操作的语言里，我们完全可以没有数（至少在考虑非负整数的情况下），可以将 0 和加一操作实现为：
+
+```lisp
+(define zero (lambda (f) (lambda (x) x)))
+
+(define (add-1 n)
+  (lambda (f) (lambda (x) (f ((n f) x)))))
+```
+
+> 这一表示形式称为 *Church* 计数，名字来源于其发明人数理逻辑学家 *Alonzo Church*，$$\lambda$$是他发明的。
+> 请直接定义 one 和 two （提示：利用代换去求值）。请给出加法过程+的一个直接定义。
+
+对于 one 的定义可以用 zero 来替换 add-one 中的参数。
+
+```lisp
+(add-1 zero)
+
+(add-1 (lambda (f)
+           (lambda (x)
+               x)))
+
+((lambda (n)                    ; add-1
+     (lambda (f)
+         (lambda (x)
+             (f ((n f) x)))))
+ (lambda (f)                    ; zero
+     (lambda (x)
+         x)))
+
+(lambda (f)
+    (lambda (x)
+        (f (
+            ((lambda (f)        ; zero
+                 (lambda (x)
+                     x))
+             f)
+            x))))
+
+(lambda (f)
+    (lambda (x)
+        (f ((lambda (x) x)
+            x))))
+
+(lambda (f)
+    (lambda (x)
+        (f x)))
+```
+
+反向展开可以得出 one 的定义。
+
+```lisp
+(define one
+    (lambda (f)
+        (lambda (x)
+            (f x))))
+```
+
+同理将 one 当做参数传入 add-one：
+
+```lisp
+(define two
+    (lambda (f)
+        (lambda (x)
+            (f (f x)))))
+```
