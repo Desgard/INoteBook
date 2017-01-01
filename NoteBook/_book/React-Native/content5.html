@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>State - 状态 · GitBook</title>
+        <title>样式 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -65,10 +65,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="content5.html" />
+    <link rel="next" href="../SICP/" />
     
     
-    <link rel="prev" href="content3.html" />
+    <link rel="prev" href="content4.html" />
     
 
     </head>
@@ -163,7 +163,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.4" data-path="content4.html">
+        <li class="chapter " data-level="1.2.4" data-path="content4.html">
             
                 <a href="content4.html">
             
@@ -176,7 +176,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.5" data-path="content5.html">
+        <li class="chapter active" data-level="1.2.5" data-path="content5.html">
             
                 <a href="content5.html">
             
@@ -352,7 +352,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >State - 状态</a>
+        <a href=".." >样式</a>
     </h1>
 </div>
 
@@ -367,41 +367,46 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="state---&#x72B6;&#x6001;"><a name="state---&#x72B6;&#x6001;" class="plugin-anchor" href="#state---&#x72B6;&#x6001;"><i class="fa fa-link" aria-hidden="true"></i></a>State - &#x72B6;&#x6001;</h1>
-<p>&#x8FD9;&#x6B21;&#x4F7F;&#x7528;&#x4E24;&#x79CD;&#x6570;&#x636E;&#x6765;&#x63A7;&#x5236;&#x4E00;&#x4E2A;&#x5B9A;&#x5236;&#x7EC4;&#x4EF6;&#xFF1A; <code>props</code> &#x548C; <code>state</code>&#x3002;<code>props</code> &#x662F;&#x5728;&#x7236;&#x7EC4;&#x4EF6;&#x4E2D;&#x6307;&#x5B9A;&#xFF0C;&#x800C;&#x4E14;&#x4E00;&#x7ECF;&#x6307;&#x5B9A;&#xFF0C;&#x5728;&#x88AB;&#x6307;&#x5B9A;&#x7684;&#x7EC4;&#x4EF6;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E2D;&#x5219;&#x4E0D;&#x518D;&#x6539;&#x53D8;&#x3002;&#x5BF9;&#x4E8E;&#x9700;&#x8981;&#x6539;&#x53D8;&#x7684;&#x6570;&#x636E;&#xFF08;&#x5373;&#x53D8;&#x91CF;&#xFF09;&#x9700;&#x8981;&#x5F15;&#x5165; <code>state</code>&#x3002;</p>
-<p>&#x4E00;&#x822C;&#x6765;&#x8BF4;&#xFF0C;&#x9700;&#x8981;&#x5728; <code>constructor</code> &#x4E2D;&#x521D;&#x59CB;&#x5316; <code>state</code>&#x3002;&#x7136;&#x540E;&#x5728;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x65F6;&#x8C03;&#x7528; <code>setState</code> &#x65B9;&#x6CD5;&#x3002;</p>
-<p>&#x4E0B;&#x4F8B;&#x662F;&#x5236;&#x4F5C;&#x4E00;&#x6BB5;&#x4E0D;&#x65AD;&#x95EA;&#x70C1;&#x7684;&#x6587;&#x5B57;&#x5B9E;&#x4F8B;&#x4EE3;&#x7801;&#xFF0C;&#x5176;&#x505A;&#x6CD5;&#x5C31;&#x662F;&#x5B9A;&#x65F6;&#x6539;&#x53D8; <code>&lt;Text&gt;</code> &#x4E2D;&#x7684;&#x6587;&#x5B57;&#x4E3A;&#x7A7A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5728;&#x5B9A;&#x65F6;&#x6539;&#x56DE;&#x3002;</p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Blink</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
-  <span class="hljs-keyword">constructor</span>(props) {
-    <span class="hljs-keyword">super</span>(props);
-    <span class="hljs-keyword">this</span>.state = { showText: <span class="hljs-literal">true</span> };
-    setInterval(() =&gt; {
-      <span class="hljs-keyword">this</span>.setState({ showText: !<span class="hljs-keyword">this</span>.state.showText });
-    }, <span class="hljs-number">1000</span>);
-  }
-
-  render() {
-    <span class="hljs-keyword">let</span> display = <span class="hljs-keyword">this</span>.state.showText ? <span class="hljs-keyword">this</span>.props.text : <span class="hljs-string">&apos; &apos;</span>;
-    <span class="hljs-keyword">return</span> (
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Text</span>&gt;</span>{display}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span></span>
-    );
-  }
-}
+                                <h1 id="&#x6837;&#x5F0F;"><a name="&#x6837;&#x5F0F;" class="plugin-anchor" href="#&#x6837;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6837;&#x5F0F;</h1>
+<p>&#x5728; <em>React Native</em> &#x4E2D;&#xFF0C;&#x4ECD;&#x7136;&#x4F7F;&#x7528; <em>JavaScript</em> &#x5199;&#x6837;&#x5F0F;&#x3002;&#x6240;&#x6709;&#x7684;&#x6838;&#x5FC3;&#x7EC4;&#x4EF6;&#x90FD;&#x63A5;&#x53D7;&#x540D;&#x4E3A; <em>style</em> &#x7684;&#x5C5E;&#x6027;&#x3002;&#x8FD9;&#x4E9B;&#x6837;&#x5F0F;&#x540D;&#x57FA;&#x672C;&#x4E0A;&#x9075;&#x5FAA;&#x4E86; web &#x4E0A;&#x7684; <em>css</em> &#x7684;&#x547D;&#x540D;&#xFF0C;&#x53EA;&#x662F;&#x6309;&#x7167; js &#x7684;&#x8BED;&#x6CD5;&#x8981;&#x6C42;&#x4F7F;&#x7528;&#x9A7C;&#x5CF0;&#x5F0F;&#x547D;&#x540D;&#xFF0C;&#x4F8B;&#x5982; <em>backgroundColor</em> &#x7B49;&#x3002;</p>
+<p><code>style</code> &#x5C5E;&#x6027;&#x53EF;&#x4EE5;&#x662F;&#x4E00;&#x4E2A;&#x666E;&#x901A;&#x7684; <em>JavaScript</em> &#x5BF9;&#x8C61;&#x3002;&#x8FD9;&#x662F;&#x6700;&#x7B80;&#x5355;&#x7684;&#x7528;&#x6CD5;&#xFF0C;&#x56E0;&#x800C;&#x5728;&#x5B9E;&#x4F8B;&#x4EE3;&#x7801;&#x4E2D;&#x5F88;&#x5E38;&#x89C1;&#x3002;&#x4F60;&#x8FD8;&#x53EF;&#x4EE5;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x6570;&#x7EC4; - &#x5728;&#x6570;&#x7EC4;&#x4E2D;&#x4F4D;&#x7F6E;&#x8DDD;&#x540E;&#x7684;&#x6837;&#x5F0F;&#x5BF9;&#x8C61;&#x6BD4;&#x5C45;&#x524D;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x66F4;&#x9AD8;&#xFF0C;&#x8FD9;&#x6837;&#x4F60;&#x53EF;&#x4EE5;&#x95F4;&#x63A5;&#x5B9E;&#x73B0;&#x6837;&#x5F0F;&#x7684;&#x7EE7;&#x627F;&#x3002;</p>
+<p>&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#x7EC4;&#x4EF6;&#x7684;&#x6837;&#x5F0F;&#x4F1A;&#x8D8A;&#x6765;&#x8D8A;&#x590D;&#x6742;&#xFF0C;&#x6211;&#x4EEC;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528; <code>StyleSheet.create</code> &#x6765;&#x96C6;&#x4E2D;&#x5B9A;&#x4E49;&#x7EC4;&#x4EF6;&#x7684;&#x6837;&#x5F0F;&#x3002;&#x6BD4;&#x5982;&#x50CF;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+<span class="hljs-keyword">import</span> {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ListView,
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-native&apos;</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloWorld</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
   render() {
     <span class="hljs-keyword">return</span> (
-      &lt;View&gt;
-          &lt;Blink text=&apos;I love to blink&apos; /&gt;
-          &lt;Blink text=&apos;Yes blinking is so great&apos; /&gt;
-          &lt;Blink text=&apos;Why did they ever take this out of HTML&apos; /&gt;
-          &lt;Blink text=&apos;Look at me look at me look at me&apos; /&gt;
-      &lt;/View&gt;
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">View</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{styles.red}</span>&gt;</span>just red<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span> 
+        <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{styles.bigblue}</span>&gt;</span>just bigblue<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{[styles.bigblue,</span> <span class="hljs-attr">styles.red</span>]}&gt;</span>bigblue, then red<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{[styles.red,</span> <span class="hljs-attr">styles.bigblue</span>]}&gt;</span>red, then bigblue<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">View</span>&gt;</span></span>
     );
   }
 }
+
+<span class="hljs-keyword">const</span> styles = StyleSheet.create({
+  bigblue: {
+    color: <span class="hljs-string">&apos;blue&apos;</span>,
+    fontWeight: <span class="hljs-string">&apos;bold&apos;</span>,
+    fontSize: <span class="hljs-number">30</span>,
+  },
+  red: {
+    color: <span class="hljs-string">&apos;red&apos;</span>,
+  },
+});
+
+AppRegistry.registerComponent(<span class="hljs-string">&apos;HelloWorld&apos;</span>, () =&gt; HelloWorld);
 </code></pre>
-<p>&#x5728;&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x4E00;&#x822C;&#x4F1A;&#x5728;&#x5B9A;&#x65F6;&#x5668;&#x51FD;&#x6570; <code>setInterval&#x3001;setTimeout</code> &#x7B49;&#x4E2D;&#x6765;&#x64CD;&#x4F5C; <code>state</code> &#x3002;&#x5178;&#x578B;&#x7684;&#x573A;&#x666F;&#x662F;&#x5728;&#x5C31;&#x53D7;&#x5230;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;&#x65B0;&#x6570;&#x636E;&#xFF0C;&#x6216;&#x8005;&#x5728;&#x7528;&#x6237;&#x8F93;&#x5165;&#x6570;&#x636E;&#x4E4B;&#x540E;&#x3002;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E00;&#x4E9B; <em>&#x72B6;&#x6001;&#x5BB9;&#x5668;</em> &#x6BD4;&#x5982; <em>Redux</em> &#x6765;&#x7EDF;&#x4E00;&#x7BA1;&#x7406;&#x6570;&#x636E;&#x6D41;&#x3002;<code>state</code> &#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x548C; <code>React.js</code> &#x5B8C;&#x5168;&#x4E00;&#x81F4;&#xFF0C;&#x6240;&#x4EE5;&#x5BF9;&#x4E8E;&#x5904;&#x7406; <code>state</code> &#x7684;&#x6DF1;&#x5165;&#x7EC6;&#x8282;&#x6587;&#x6863;&#x4E2D;&#x4E0D;&#x518D;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;&#x3002;</p>
 
                                 
                                 </section>
@@ -429,12 +434,12 @@
 
             
                 
-                <a href="content3.html" class="navigation navigation-prev " aria-label="Previous page: Props - 属性">
+                <a href="content4.html" class="navigation navigation-prev " aria-label="Previous page: State - 状态">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="content5.html" class="navigation navigation-next " aria-label="Next page: 样式">
+                <a href="../SICP/" class="navigation navigation-next " aria-label="Next page: SICP 笔记与习题">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -445,7 +450,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"State - 状态","level":"1.2.4","depth":2,"next":{"title":"样式","level":"1.2.5","depth":2,"path":"React-Native/content5.md","ref":"React-Native/content5.md","articles":[]},"previous":{"title":"Props - 属性","level":"1.2.3","depth":2,"path":"React-Native/content3.md","ref":"React-Native/content3.md","articles":[]},"dir":"ltr"},"config":{"plugins":["advanced-emoji","mathjax","include-codeblock","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"shortName":"desgard"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"advanced-emoji":{"embedEmojis":false},"include-codeblock":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","name":"INoteBook - 个人学习笔记汇总","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"version":"0.0.0","gitbook":"*"},"file":{"path":"React-Native/content4.md","mtime":"2017-01-01T14:37:00.106Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-01T15:18:35.477Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"样式","level":"1.2.5","depth":2,"next":{"title":"SICP 笔记与习题","level":"1.3","depth":1,"path":"SICP/README.md","ref":"SICP/README.md","articles":[{"title":"构造过程抽象","level":"1.3.1","depth":2,"path":"SICP/content1.md","ref":"SICP/content1.md","articles":[]},{"title":"构造数据抽象","level":"1.3.2","depth":2,"path":"SICP/content2.md","ref":"SICP/content2.md","articles":[]}]},"previous":{"title":"State - 状态","level":"1.2.4","depth":2,"path":"React-Native/content4.md","ref":"React-Native/content4.md","articles":[]},"dir":"ltr"},"config":{"plugins":["advanced-emoji","mathjax","include-codeblock","anchors"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"shortName":"desgard"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"advanced-emoji":{"embedEmojis":false},"include-codeblock":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","name":"INoteBook - 个人学习笔记汇总","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"version":"0.0.0","gitbook":"*"},"file":{"path":"React-Native/content5.md","mtime":"2017-01-01T14:37:00.106Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-01T15:18:35.477Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
