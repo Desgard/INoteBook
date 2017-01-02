@@ -7,6 +7,8 @@
     * [Props - 属性](React-Native/content3.md)
     * [State - 状态](React-Native/content4.md)
     * [样式](React-Native/content5.md)
+    * [高度与宽度](React-Native/content6.md)
+    * [使用 Flexbox 布局](React-Native/content7.md)
 * [SICP 笔记与习题](SICP/README.md)
     * [构造过程抽象](SICP/content1.md)
     * [构造数据抽象](SICP/content2.md)
