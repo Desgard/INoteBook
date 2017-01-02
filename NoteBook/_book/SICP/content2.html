@@ -690,6 +690,39 @@ Width 2:
         (<span class="hljs-name">lambda</span> (<span class="hljs-name">x</span>)
             (<span class="hljs-name">f</span> (<span class="hljs-name">f</span> x)))))
 </code></pre>
+<h2 id="&#x6269;&#x5C55;&#x7EC3;&#x4E60;&#xFF1A;&#x533A;&#x95F4;&#x7B97;&#x6570;"><a name="&#x6269;&#x5C55;&#x7EC3;&#x4E60;&#xFF1A;&#x533A;&#x95F4;&#x7B97;&#x6570;" class="plugin-anchor" href="#&#x6269;&#x5C55;&#x7EC3;&#x4E60;&#xFF1A;&#x533A;&#x95F4;&#x7B97;&#x6570;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6269;&#x5C55;&#x7EC3;&#x4E60;&#xFF1A;&#x533A;&#x95F4;&#x7B97;&#x6570;</h2>
+<p>&#x5C06;&#x6570;&#x636E;&#x4ECE;&#x5355;&#x4E2A;&#x53D8;&#x6210;&#x5E8F;&#x5BF9;&#x7684;&#x533A;&#x95F4;&#x8FD0;&#x7B97;&#x3002;&#x5E76;&#x4E14;&#x7ED9;&#x51FA;&#x4E86;&#x57FA;&#x672C;&#x7684;&#x8FD0;&#x7B97;&#x89C4;&#x5219;&#x63CF;&#x8FF0;&#xFF1A;</p>
+<pre><code class="lang-lisp">(<span class="hljs-name">define</span> (<span class="hljs-name">add-interval</span> x y)  
+  (<span class="hljs-name">make-interval</span> (<span class="hljs-name">+</span> (<span class="hljs-name">lower-bound</span> x) (<span class="hljs-name">lower-bound</span> y))  
+         (<span class="hljs-name">+</span> (<span class="hljs-name">upper-bound</span> x) (<span class="hljs-name">upper-bound</span> y))))  
+
+(<span class="hljs-name">define</span> (<span class="hljs-name">mul-interval</span> x y)
+  let ((<span class="hljs-name">p1</span> (<span class="hljs-name">*</span> (<span class="hljs-name">lower-bound</span> x) (<span class="hljs-name">lower-bound</span> y)))
+       (<span class="hljs-name">p2</span> (<span class="hljs-name">*</span> (<span class="hljs-name">lower-bound</span> x) (<span class="hljs-name">upper-bound</span> y)))
+       (<span class="hljs-name">p3</span> (<span class="hljs-name">*</span> (<span class="hljs-name">lower-bound</span> x) (<span class="hljs-name">lower-bound</span> y)))
+       (<span class="hljs-name">p4</span> (<span class="hljs-name">*</span> (<span class="hljs-name">lower-bound</span> x) (<span class="hljs-name">upper-bound</span> y))))
+  (<span class="hljs-name">make-interval</span> (<span class="hljs-name">min</span> p1 p2 p3 p4)
+                 (<span class="hljs-name">max</span> p1 p2 p3 p4)))
+
+(<span class="hljs-name">define</span> (<span class="hljs-name">div-interval</span> x y)
+  (<span class="hljs-name">mul-interval</span> x
+                (<span class="hljs-name">make-interval</span> (<span class="hljs-name">/</span> <span class="hljs-number">1.0</span> (<span class="hljs-name">upper-bound</span> y))
+                               (<span class="hljs-name">/</span> <span class="hljs-number">1.0</span> (<span class="hljs-name">lower-bound</span> y)))))
+</code></pre>
+<blockquote>
+<p><strong>&#x7EC3;&#x4E60;2.7</strong> <em>Alyssa</em> &#x7684;&#x7A0B;&#x5E8F;&#x662F;&#x4E0D;&#x5B8C;&#x6574;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5979;&#x8FD8;&#x6CA1;&#x6709;&#x786E;&#x5B9A;&#x533A;&#x95F4;&#x62BD;&#x8C61;&#x7684;&#x5B9E;&#x73B0;&#x3002;&#x8FD9;&#x91CC;&#x662F;&#x533A;&#x95F4;&#x6784;&#x6210;&#x7B26;&#x7684;&#x5B9A;&#x4E49;&#xFF1A;</p>
+</blockquote>
+<pre><code class="lang-lisp">(<span class="hljs-name">define</span> (<span class="hljs-name">make-interval</span> a b) (<span class="hljs-name">cons</span> a b))
+</code></pre>
+<blockquote>
+<p>&#x8BF7;&#x5B9A;&#x4E49;&#x9009;&#x62E9;&#x7B26; <code>upper-bound</code> &#x548C; <code>lower-bound</code> &#xFF0C;&#x5B8C;&#x6210;&#x8FD9;&#x4E00;&#x5B9E;&#x73B0;&#x3002;</p>
+</blockquote>
+<pre><code class="lang-lisp">(<span class="hljs-name">define</span> (<span class="hljs-name">lower-bound</span> x)  
+  (<span class="hljs-name">car</span> x))  
+
+(<span class="hljs-name">define</span> (<span class="hljs-name">upper-bound</span> x)  
+  (<span class="hljs-name">cdr</span> x))
+</code></pre>
 
                                 
                                 </section>
@@ -733,7 +766,7 @@ Width 2:
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"构造数据抽象","level":"1.3.2","depth":2,"next":{"title":"Lightweigth Django - Learning Note","level":"1.4","depth":1,"path":"LD/README.md","ref":"LD/README.md","articles":[{"title":"常用命令集","level":"1.4.1","depth":2,"path":"LD/content1.md","ref":"LD/content1.md","articles":[]}]},"previous":{"title":"构造过程抽象","level":"1.3.1","depth":2,"path":"SICP/content1.md","ref":"SICP/content1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["advanced-emoji","mathjax","include-codeblock","anchors","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"shortName":"desgard"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"advanced-emoji":{"embedEmojis":false},"include-codeblock":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","name":"INoteBook - 个人学习笔记汇总","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"version":"0.0.0","gitbook":"*"},"file":{"path":"SICP/content2.md","mtime":"2017-01-01T16:38:43.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-02T11:10:58.424Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"构造数据抽象","level":"1.3.2","depth":2,"next":{"title":"Lightweigth Django - Learning Note","level":"1.4","depth":1,"path":"LD/README.md","ref":"LD/README.md","articles":[{"title":"常用命令集","level":"1.4.1","depth":2,"path":"LD/content1.md","ref":"LD/content1.md","articles":[]}]},"previous":{"title":"构造过程抽象","level":"1.3.1","depth":2,"path":"SICP/content1.md","ref":"SICP/content1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["advanced-emoji","mathjax","include-codeblock","anchors","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"disqus":{"shortName":"desgard"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"advanced-emoji":{"embedEmojis":false},"include-codeblock":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","name":"INoteBook - 个人学习笔记汇总","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"version":"0.0.0","gitbook":"*"},"file":{"path":"SICP/content2.md","mtime":"2017-01-02T14:57:05.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-02T14:56:33.150Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

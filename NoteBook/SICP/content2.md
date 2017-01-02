@@ -361,3 +361,45 @@ Width 2:
         (lambda (x)
             (f (f x)))))
 ```
+
+
+## 扩展练习：区间算数
+
+将数据从单个变成序对的区间运算。并且给出了基本的运算规则描述：
+
+```lisp
+(define (add-interval x y)  
+  (make-interval (+ (lower-bound x) (lower-bound y))  
+         (+ (upper-bound x) (upper-bound y))))  
+
+(define (mul-interval x y)
+  let ((p1 (* (lower-bound x) (lower-bound y)))
+       (p2 (* (lower-bound x) (upper-bound y)))
+       (p3 (* (lower-bound x) (lower-bound y)))
+       (p4 (* (lower-bound x) (upper-bound y))))
+  (make-interval (min p1 p2 p3 p4)
+                 (max p1 p2 p3 p4)))
+
+(define (div-interval x y)
+  (mul-interval x
+                (make-interval (/ 1.0 (upper-bound y))
+                               (/ 1.0 (lower-bound y)))))
+```
+
+> **练习2.7** *Alyssa* 的程序是不完整的，因为她还没有确定区间抽象的实现。这里是区间构成符的定义：
+
+```lisp
+(define (make-interval a b) (cons a b))
+```
+
+> 请定义选择符 `upper-bound` 和 `lower-bound` ，完成这一实现。
+
+```lisp
+(define (lower-bound x)  
+  (car x))  
+  
+(define (upper-bound x)  
+  (cdr x))  
+```
+
+
