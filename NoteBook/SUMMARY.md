@@ -9,6 +9,7 @@
     * [样式](React-Native/content5.md)
     * [高度与宽度](React-Native/content6.md)
     * [使用 Flexbox 布局](React-Native/content7.md)
+    * [处理文本输入](React-Native/content8.md)
 * [SICP 笔记与习题](SICP/README.md)
     * [构造过程抽象](SICP/content1.md)
     * [构造数据抽象](SICP/content2.md)
