@@ -31,5 +31,3 @@ export default class HelloWorld extends Component {
 
 例中我们把 `text` 保存到 state 中，因为它会随着时间变化。
 
-
-
